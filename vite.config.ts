@@ -55,11 +55,13 @@ const produceSingleFile = process.env.SINGLE_FILE === 'true'
 
 // https://vite.dev/config/
 export default defineConfig({
+  // GitHub Pagesの場合はリポジトリ名をbaseに設定
+  base: process.env.GITHUB_PAGES === 'true' ? '/lapsell_demo/' : '/',
   plugins: [
-    react(), 
-    tailwindcss(), 
-    figmaAssetsResolver(), 
-    removeVersionSpecifiers(), 
+    react(),
+    tailwindcss(),
+    figmaAssetsResolver(),
+    removeVersionSpecifiers(),
     ...(produceSingleFile ? [viteSingleFile()] : [])
   ],
 })
